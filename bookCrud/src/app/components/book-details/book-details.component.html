@@ -1,0 +1,72 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-end">
+                <button mat-fab extended color="primary" (click)="AddBook()">
+                    <mat-icon>add circle</mat-icon>
+                    Add Book
+                </button>
+        </div>
+        <div class="row mt-5">
+        @if(dataSource.length  === 0 ) {
+            <div class="col-12 d-flex justify-content-center align-items-center">
+                <h1>No Books Found</h1>
+            </div>
+        }
+        @if(dataSource.length > 0 ){
+                <div class="col-lg-12 d-flex justify-content-center align-items-center">
+                    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 rounded">
+                        <ng-container matColumnDef="no">
+                            <th mat-header-cell *matHeaderCellDef>No</th>
+                            <td mat-cell *matCellDef="let element  let i = index"> {{ i  +   1 }} </td>
+                          </ng-container>
+
+                        <ng-container matColumnDef="name">
+                          <th mat-header-cell *matHeaderCellDef> name</th>
+                          <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="author">
+                          <th mat-header-cell *matHeaderCellDef> author name </th>
+                          <td mat-cell *matCellDef="let element"> {{element.author}} </td>
+                        </ng-container>
+                      
+                        <ng-container matColumnDef="price">
+                          <th mat-header-cell *matHeaderCellDef> price </th>
+                          <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+                        </ng-container>
+                      
+                        <ng-container matColumnDef="rating">
+                          <th mat-header-cell *matHeaderCellDef> rating </th>
+                          <td mat-cell *matCellDef="let element"> {{element.rating}} / 5 </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="type">
+                          <th mat-header-cell *matHeaderCellDef> type </th>
+                          <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+                        </ng-container>
+
+                        <ng-container matColumnDef="part">
+                          <th mat-header-cell *matHeaderCellDef> parts </th>
+                          <td mat-cell *matCellDef="let element"> {{element.part}} </td>
+                        </ng-container>
+                        
+                        <ng-container matColumnDef="action">
+                            <th mat-header-cell *matHeaderCellDef>Action </th>
+                            <td mat-cell *matCellDef="let element let i = index">
+                              <button mat-icon-button color="primary" (click)="editBooks(element)" >
+                                <mat-icon>edit</mat-icon>
+                              </button>
+                              <button mat-icon-button color="warn" (click)="deleteBook(i)" >
+                                <mat-icon>delete</mat-icon>
+                              </button>
+                            </td>
+                          </ng-container>
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns" class=" fs-6 bg-deep-purple text-white"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"  class="fs-6"></tr>
+                      </table>  
+                </div>
+          
+        }
+    </div>
+    </div>
+</div>

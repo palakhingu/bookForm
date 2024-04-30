@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <form [formGroup]="editBooks">
+                <h2 class="">Edit Book</h2>
+                <mat-form-field>
+                    <mat-label>Book Name</mat-label>
+                    <input matInput placeholder="Book Name" type="text" formControlName="name">      
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-label>Author Name</mat-label>
+                    <input matInput type="text" placeholder="Author Name" formControlName="author">
+                </mat-form-field>
+                <h3>Parts</h3>    
+                <div formGroupName="dynamicData">
+                        <div formArrayName="parts">
+                            <button mat-raised-button color="primary" (click)="captureAndAdd()" [disabled]="!isCurrentPartFilled(0)">Add Part</button>                           
+                            <div *ngFor="let part of parts.controls; let i=index" [formGroupName]="i">
+                                <mat-form-field>
+                                    <mat-label>Part Name</mat-label>
+                                    <input matInput placeholder="Part name" type="text" formControlName="partName">      
+                                </mat-form-field>
+                                <mat-form-field>
+                                    <mat-label> Publish date</mat-label>
+                                    <input matInput [matDatepicker]="picker" formControlName="publishDate">
+                                    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                  </mat-form-field>
+                            </div>
+                        </div>
+                  </div>    
+                </form>
+        </div>
+        <mat-dialog-actions align="end" class="p-5">
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button mat-button mat-flat-button [color]="'primary'" (click)="save()">Save</button>
+        </mat-dialog-actions>
+    </div>
+</div>

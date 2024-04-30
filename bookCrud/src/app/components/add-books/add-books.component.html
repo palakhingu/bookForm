@@ -1,0 +1,73 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+            <form [formGroup]="bookForm">
+                <h2 class="">Add Book</h2>
+              <mat-form-field>
+                <mat-label>
+                  Enter Book Name
+                </mat-label>
+                <input matInput placeholder="Book Name" type="text" formControlName="name">      
+                @if (bookForm.controls['name'].hasError('required')) {
+                    <mat-error>
+                      <strong>Name</strong> is required
+                    </mat-error>
+                    }         
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>
+                    Enter Auther Name
+                </mat-label>
+                <input matInput type="text" placeholder="Auther Name"  formControlName="author">
+                @if (bookForm.controls['author'].hasError('required')) {
+                    <mat-error>
+                      <strong>author name</strong> is required
+                    </mat-error>
+                    }      
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Enter Price</mat-label>
+                <input matInput type="number" placeholder="Price" formControlName="price" >
+                @if (bookForm.controls['price'].hasError('required')) {
+                    <mat-error>
+                      <strong>price</strong> is required
+                    </mat-error>
+                    }      
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>
+                   Enter Rating
+                </mat-label>
+                <mat-select formControlName="rating">
+                    <mat-option value="1">1</mat-option>
+                    <mat-option value="2">2</mat-option>
+                    <mat-option value="3">3</mat-option>
+                    <mat-option value="4">4</mat-option>
+                    <mat-option value="5">5</mat-option>
+                </mat-select>
+                @if (bookForm.controls['rating'].hasError('required')) {
+                    <mat-error>
+                      <strong>rating</strong> is required
+                    </mat-error>
+                    }      
+            </mat-form-field>
+              <mat-form-field>
+                <mat-label>
+                  Enter Type
+                </mat-label>
+                <input matInput placeholder="Type" type="text" formControlName="type">
+                @if (bookForm.controls['type'].hasError('required')) {
+                    <mat-error>
+                      <strong>type</strong> is required
+                    </mat-error>
+                    }      
+              </mat-form-field>
+             
+            </form>
+        </div>
+        <mat-dialog-actions align="end" class="p-5">
+            <button mat-button mat-dialog-close>Cancel</button>
+            <button mat-button mat-flat-button [color]="'primary'" (click)="addBook()">Save</button>
+        </mat-dialog-actions>
+    </div>
+  </div>
